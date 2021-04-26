@@ -1,7 +1,7 @@
 import express from 'express';
 import ejs from 'ejs';
 import path from 'path';
-import pdf from 'html-pdf';
+import puppeteer from 'puppeteer';
 
 const app = express();
 
@@ -33,31 +33,37 @@ app.get('/', (request, response) => {
     },
     (error, html) => {
       if (error) {
-        console.log(error);
         return response.send('read file error');
       }
-      const options = {
-        height: '11.25in',
-        width: '8.5in',
-        header: {
-          height: '20mm',
-        },
-        footer: {
-          height: '20mm',
-        },
-      };
-
-      // criar o pdf
-      pdf.create(html, options).toFile('report.pdf', (err, data) => {
-        if (err) {
-          return response.send('Generate PDF error');
-        }
-        return response.send(html);
-      });
-
-      // Enviar para o navegador
+      return response.send(html);
     },
   );
+});
+
+app.get('/pdf', async (request, response) => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  await page.goto('http://localhost:3000', {
+    waitUntil: 'networkidle0',
+  });
+
+  const pdf = await page.pdf({
+    printBackground: true,
+    format: 'letter',
+    margin: {
+      top: '20px',
+      bottom: '40px',
+      left: '20px',
+      right: '20px',
+    },
+  });
+
+  await browser.close();
+
+  response.contentType('application/pdf');
+
+  return response.send(pdf);
 });
 
 app.listen(3000, () => {

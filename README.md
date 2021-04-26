@@ -1,15 +1,15 @@
 # Como exportar um PDF com NodeJS
 
-- [] Pq eu preciso exportar um PDF?
-- [] Existem outras ferramentas?
-- [] Pq eu vou usar o NodeJS?
+- [x] Pq eu preciso exportar um PDF?
+- [x] Existem outras ferramentas?
+- [x] Pq eu vou usar o NodeJS?
 
 # O que vamos aprender aqui?
 
-- [] NodeJS
-- [] Criar um servidor com uma rota
-- [] Usar um template engine
-- [] Usar callbacks
+- [x] NodeJS
+- [x] Criar um servidor com uma rota
+- [x] Usar um template engine
+- [x] Usar callbacks
 
 # Bora codar?
 
@@ -31,5 +31,13 @@
 
 # Bônus
 
-- [] Melhorar o estilo do pdf
-- [] utilizar o `puppeter`
+- [x] Melhorar o estilo do pdf
+- [x] Utilizar o `puppeteer`
+- [x] Criar uma nova rota para exportação
+- [x] Iniciar o puppeteer (headless)
+- [x] Iniciar a página
+- [x] Ir para URL (aguardar toda a página ser carregada)
+- [x] Configurar e gerar o pdf
+- [x] Fechar o browser
+- [x] Configurar o tipo de conteúdo da rota como `application/pdf`
+- [x] Exportar o pdf
